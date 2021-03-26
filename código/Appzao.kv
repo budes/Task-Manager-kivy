@@ -1,0 +1,112 @@
+<Tarefas>:
+	orientation: "vertical"
+	
+	BoxLayout:
+		size_hint_y: None
+		height: 100
+		
+		TextInput:
+			id:texto
+			font_size: 40
+		BotaoCria:
+			
+			text: "+"
+			
+			font_size: 50
+			on_release: 
+				root.adiciona(root.ids.texto.text)
+				root.ids.texto.text = ""
+	
+	ScrollView:
+		canvas.before:
+			Color:
+				rgba: 0.93, 0.93, 0.93, 1
+					
+			Rectangle:
+				pos: self.pos
+				size: self.size
+				
+		BoxLayout:
+			
+			padding: 20
+			spacing: 5
+					
+			id: box
+			orientation: "vertical"
+			size_hint_y: None
+			height: self.minimum_height
+	
+	
+	
+<Tarefa>:
+	size_hint_y: None
+	height: 200
+	
+	spacing: 10
+	
+	Label:
+		color: 0, 0, 0, 1
+		
+		font_size: 50
+		
+		canvas.before:
+			Color:
+				rgba: 0.3, 0.3, 0.8, 1
+			
+			Ellipse:
+				size: 50, 50
+				pos: self.pos
+				
+			Ellipse:
+				size: 50, 50
+				pos: self.x, self.y+self.height-50
+				
+				
+			Rectangle: 
+				size: 25, self.height-50
+				pos: self.x, self.y+25
+			
+			Color:
+				rgba: 0.85, 0.85, 0.85, 1
+				
+			Rectangle:
+				size: self.size
+				pos: self.x+25, self.y
+			
+		id: label
+		
+		
+	Botao:
+		on_release: app.root.ids.box.remove_widget(root)
+		font_size: 80
+		text: "×"
+		
+		
+<BotaoCria@ButtonBehavior+Label>:
+	size_hint_x: None 
+	width: 200
+	
+	canvas.before:
+		Color:
+			rgba: 0.3, 0.3, 0.8, 1
+			
+		Rectangle:
+			size: self.size
+			pos: self.pos
+			
+<Botao@ButtonBehavior+Label>:
+	
+	size_hint_x: None
+	width: 100
+		
+	canvas.before:
+		Color:
+			rgba: 1, 0, 0, 1
+				
+		Rectangle:
+			size: self.size
+			pos: self.pos
+				
+	color: 1, 1, 1, 1
+	
+	
